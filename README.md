@@ -1,4 +1,4 @@
-# urdf_tutorial: Learning URDF Step by Step
+# urdf_tutorial: Learning URDF Step by Step 
 
  1. [Building a Visual Robot Model with URDF from Scratch](https://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch) - Learn how to build a visual model of a robot that you can view in Rviz
 
