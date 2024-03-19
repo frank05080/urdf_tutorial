@@ -56,3 +56,30 @@ transforms:
 Now, looking at the leg’s visual origin, it has both a xyz and rpy offset. This defines where the center of the visual element should be, relative to its origin. Since we want the leg to attach at the top, we offset the origin down by setting the z offset to be -0.3 meters. And since we want the long part of the leg to be parallel to the z axis, we rotate the visual part PI/2 around the Y axis.
 
 ![](./imgs/4.JPG)
+
+1. The launch file runs packages that will create TF frames for each link in your model based on your URDF. Rviz uses this information to figure out where to display each shape.
+
+2. If a TF frame does not exist for a given URDF link, then it will be placed at the origin in white (ref. related question).
+So YOU MUST HAVE BASE_LINK IN YOUR URDF:
+
+在ROS (Robot Operating System) 中，TF (Transform) 是一种维护不同坐标系之间关系的系统。它允许你跟踪随时间变化的坐标系之间的相对位置和方向。每个坐标系被称为一个“frame”。
+
+当你在RViz中可视化一个URDF模型时，每个`<link>`通常都会有一个与之对应的TF frame。这样，每个部件（或link）的位置和方向都可以相对于其他部件（或全局参考frame，如`base_link`）来确定。这对于理解机器人各部件如何相互关联及其在空间中的相对位置非常有用。
+
+然而，如果某个URDF链接（link）**没有**对应的TF frame（也就是说，没有为这个链接定义相对于其他链接的变换），RViz将无法确定它应该在哪里放置这个链接的可视化表示。在这种情况下，RViz的默认行为是将该链接放置在原点（0, 0, 0），并通常以白色显示，以表明它没有有效的TF frame。
+
+这种处理方式有几个目的：
+
+1. **提示**：通过将没有TF frame的链接放置在原点并以白色显示，向用户提示这些链接缺少有效的TF信息。这是一种视觉提示，表明需要进一步配置或调查为什么这些链接没有与之关联的TF frame。
+
+2. **容错**：即使缺少TF信息，也允许URDF模型的其余部分被可视化。这使得用户可以至少看到模型的一部分，并开始调试或修复缺少TF frame的问题。
+
+3. **简化处理**：在缺少详细信息的情况下，将链接放置在原点并以一种默认颜色显示，提供了一种简单的方法来处理不完整的TF树情况，避免了可视化过程中的复杂错误处理。
+
+理解这一点对于ROS新手至关重要，因为它有助于诊断模型配置问题，特别是在复杂机器人模型的开发和调试过程中。当你在RViz中看到位于原点且为白色的链接时，这是一个明确的指示，表明你需要为这些链接定义适当的TF变换。
+
+So, in 03a-debug.urdf, you must specify the base_link
+
+## Final Example
+
+ros2 run tf2_ros tf2_echo base_link right_tip

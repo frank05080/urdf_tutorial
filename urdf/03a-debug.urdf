@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="myrobot"
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find urdf_tutorial)/urdf/materials.urdf.xacro" />
+    <link name="torso">
+        <visual>
+            <geometry>
+                <box size="1 1 1" />
+            </geometry>
+            <material name="red"/>
+        </visual>
+    </link>
+</robot>
