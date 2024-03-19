@@ -32,7 +32,7 @@ After first specifying the joint origin (relation of base_link and right leg), w
 
 ![](./imgs/3.JPG)
 
-/tf is published by /robot_state_pub:
+/tf is published by robot_state_pub:
 transforms:
 - header:
     stamp:
@@ -83,3 +83,13 @@ So, in 03a-debug.urdf, you must specify the base_link
 ## Fifth Example
 
 ros2 run tf2_ros tf2_echo base_link right_tip
+
+## Sixth Example
+
+prismatic's limit tag has unit of meters. Revoluate's limit tag has unit of radians
+
+How GUI controls RVIZ?
+GUI parse URDF and finds all nonfixed joints and their limits, it uses slider value to publish sensor_msgs/msg/JointState msgs. robot_state_pub use these msgs to calcuate tfs. tfs then show in RVIZ.
+
+nodes relation
+![](imgs/5.JPG)
