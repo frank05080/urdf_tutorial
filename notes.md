@@ -25,3 +25,34 @@ If not set origin in joints, the origin of base_link and right_leg are overlappi
 
 ![](./imgs/1.JPG)
 ![](./imgs/2.JPG)
+
+## Third Example
+
+After first specifying the joint origin (relation of base_link and right leg), we have:
+
+![](./imgs/3.JPG)
+
+/tf is published by /robot_state_pub:
+transforms:
+- header:
+    stamp:
+      sec: 1710813026
+      nanosec: 603252645
+    frame_id: base_link
+  child_frame_id: right_leg
+  transform:
+    translation:
+      x: 0.0
+      y: -0.22
+      z: 0.25
+    rotation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+---
+
+
+Now, looking at the leg’s visual origin, it has both a xyz and rpy offset. This defines where the center of the visual element should be, relative to its origin. Since we want the leg to attach at the top, we offset the origin down by setting the z offset to be -0.3 meters. And since we want the long part of the leg to be parallel to the z axis, we rotate the visual part PI/2 around the Y axis.
+
+![](./imgs/4.JPG)
