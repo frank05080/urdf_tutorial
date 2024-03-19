@@ -10,4 +10,17 @@
             <material name="red"/>
         </visual>
     </link>
+
+   <!-- if there is no transform, there is no tf being pubed -->
+   <!-- TO MAKE TF pubed out, uncomment the following code -->
+   <!-- axis will be the global frame, will be placed at (0,0,0) -->
+
+    <link name="axis">
+    </link>
+
+    <joint name="leg1connect" type="fixed">
+        <origin xyz="0 .30 0" />
+        <parent link="axis"/>
+        <child link="torso"/>
+    </joint>
 </robot>

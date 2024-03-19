@@ -59,14 +59,16 @@ Now, looking at the leg’s visual origin, it has both a xyz and rpy offset. Thi
 
 1. The launch file runs packages that will create TF frames for each link in your model based on your URDF. Rviz uses this information to figure out where to display each shape.
 
-2. If a TF frame does not exist for a given URDF link, then it will be placed at the origin in white (ref. related question).
-So YOU MUST HAVE BASE_LINK IN YOUR URDF:
+2. If a TF frame does not exist for a given URDF link, then it will be placed at the origin!(ref. related question).
+
+see 03a-debug, there is no /tf or /tf_static being pubed out.
+CHECK TO FIX THE "Fixed Frame" tag in RVIZ
 
 在ROS (Robot Operating System) 中，TF (Transform) 是一种维护不同坐标系之间关系的系统。它允许你跟踪随时间变化的坐标系之间的相对位置和方向。每个坐标系被称为一个“frame”。
 
 当你在RViz中可视化一个URDF模型时，每个`<link>`通常都会有一个与之对应的TF frame。这样，每个部件（或link）的位置和方向都可以相对于其他部件（或全局参考frame，如`base_link`）来确定。这对于理解机器人各部件如何相互关联及其在空间中的相对位置非常有用。
 
-然而，如果某个URDF链接（link）**没有**对应的TF frame（也就是说，没有为这个链接定义相对于其他链接的变换），RViz将无法确定它应该在哪里放置这个链接的可视化表示。在这种情况下，RViz的默认行为是将该链接放置在原点（0, 0, 0），并通常以白色显示，以表明它没有有效的TF frame。
+然而，如果某个URDF链接（link）**没有**对应的TF frame（也就是说，没有为这个链接定义相对于其他链接的变换），RViz将无法确定它应该在哪里放置这个链接的可视化表示。在这种情况下，RViz的默认行为是将该链接放置在原点（0, 0, 0），以表明它没有有效的TF frame。
 
 这种处理方式有几个目的：
 
