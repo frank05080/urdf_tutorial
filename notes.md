@@ -101,3 +101,11 @@ In many cases, you’ll want the collision geometry and origin to be exactly the
 1. Quicker Processing. Doing collision detection for two meshes is a lot more computational complex than for two simple geometries. Hence, you may want to replace the meshes with simpler geometries in the collision element. Otherwise it's gonna be very slow
 
 2. Safe Zones. You may want to restrict movement close to sensitive equipment. For instance, if we didn’t want anything to collide with R2D2’s head, we might define the collision geometry to be a cylinder encasing his head to prevent anything from getting too close to his head.
+
+Moment of Inertia Understanding:
+
+1. If unsure what to put, a matrix with ixx/iyy/izz=1e-3 or smaller is often a reasonable default for a mid-sized link (it corresponds to a box of 0.1 m side length with a mass of 0.6 kg). The identity matrix is a particularly bad choice, since it is often much too high (it corresponds to a box of 0.1 m side length with a mass of 600 kg!).
+
+2. You can also specify an origin tag to specify the center of gravity and the inertial reference frame (relative to the link’s reference frame).
+
+3. When using realtime controllers, inertia elements of zero (or almost zero) can cause the robot model to collapse without warning, and all links will appear with their origins coinciding with the world origin.
