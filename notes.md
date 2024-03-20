@@ -111,3 +111,6 @@ Moment of Inertia Understanding:
 2. You can also specify an origin tag to specify the center of gravity and the inertial reference frame (relative to the link’s reference frame).
 
 3. When using realtime controllers, inertia elements of zero (or almost zero) can cause the robot model to collapse without warning, and all links will appear with their origins coinciding with the world origin.
+
+
+RGBA's last elem a, set to 1 will set 0 transparency
